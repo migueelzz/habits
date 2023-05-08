@@ -4,6 +4,10 @@ import { prisma } from "./lib/prisma";
 import dayjs from 'dayjs';
 
 export async function appRoutes(app: FastifyInstance) {
+  app.get('/', () => {
+    return 'Habit Server Rest API...'
+  })
+
   app.post('/habits', async (req)=> {
     const createHabitBody = z.object({
       title: z.string(),
