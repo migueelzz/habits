@@ -10,8 +10,8 @@ import { api } from "../lib/axios";
 const availableWeekDays = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sabado"];
 
 export function New() {
-  const [title, setTitle] = useState('')
-  const [weekDays, setWeekDays] = useState<number[]>([])
+  const [title, setTitle] = useState('');
+  const [weekDays, setWeekDays] = useState<number[]>([]);
 
   function handleToggleWeekDays(weekDayIndex: number) {
     if(weekDays.includes(weekDayIndex)) {
@@ -24,7 +24,7 @@ export function New() {
   async function handleCreateNewHabit() {
     try {
       if(!title.trim() || weekDays.length === 0) {
-        Alert.alert('Novo Hábito', 'Informe o nome do hábito e escolha a periodicidade.');
+        return Alert.alert('Novo Hábito', 'Informe o nome do hábito e escolha a periodicidade.');
       }
 
       await api.post('/habits', { title, weekDays });

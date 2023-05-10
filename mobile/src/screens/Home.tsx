@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useCallback } from "react";
 import { View, Text, ScrollView, Alert } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import dayjs from "dayjs";
 
 import { Header } from "../components/Header";
@@ -31,8 +31,8 @@ export function Home() {
   async function fetchData() {
     try {
       setLoading(true);
-      const response = await api.get('summary');
-      console.log(response.data);
+      const response = await api.get('/summary');
+      // console.log(response.data);
       setSummary(response.data);
 
     } catch (err) {
@@ -43,9 +43,9 @@ export function Home() {
     }
   }
 
-  useEffect(() => {
+  useFocusEffect(useCallback(() => {
     fetchData();
-  }, []);
+  }, []));
 
   if(loading) {
     return (
